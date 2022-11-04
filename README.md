@@ -5,9 +5,7 @@ Given an image and its grid of pixel data, we want to convert each pixel based o
 
 For example, if we have a node of note C connected to a node of note G, the absolute difference between the two notes is 6, because there are 6 notes on the chromatic scale between C and G.
 
-By using Dijkstra's algorithm and the A* algorithm on this weighted graph, we will produce two shortest path trees. Using a BFS/DFS traversal method for each tree, we can add a sequence of notes into a MIDI file and compare them. Since we know that Dijkstra's algorithm is greedy and A* is more informed, we hypothesize that the MIDI file produced out of Dijkstra’s SPT will have a longer length than the file produced from the A* SPT. We can then learn from the output and perhaps do further processing with the MIDI files to compose a melodic and somewhat aurally-pleasing "song".
-
-**Note**: to create and export MIDI files, we will use [Midifile](https://midifile.sapp.org/), a C++ library to write MIDI files with.
+By using Prim’s algorithm and the A* algorithm on this weighted graph, we will produce a minimum spanning tree and a shortest path tree respectively. Using a BFS/DFS traversal method for each tree, we can add a sequence of notes into a MIDI file and compare them. Since a minimum spanning tree connects every vertex to each other with the lowest cost and the shortest path tree creates a single path from start to end, we expect the MIDI file output for Prim’s algorithm to be larger. We can then learn from each output and perhaps do further processing with the MIDI files to compose a melodic and somewhat aurally-pleasing "song".
 
 ## Dataset Acquisition
 Our dataset consists of images, which are widespread and flexible as a data format. We expect any acceptable image file to work as an input for our program. In the repository, we will provide a suite of publicly available test images to use on the program.
@@ -16,10 +14,23 @@ Our dataset consists of images, which are widespread and flexible as a data form
 Our input images will be accepted as PNG files. The source of the image can be anywhere, so long as it is in PNG format. The size of the image is variable. We are planning to form a graph from the entire grid of pixels, so we will use all the input data to do so.
 
 ## Data Correction
-The images are usually preprocessed and will not consist of error entry. However, we will be limiting the resolution of the image as a larger resolution could make the construction of the graph difficult, since we are thinking of using an adjacency matrix, which is better optimized for a smaller dataset. Thus, we will likely impose image resolution constraints in order to ensure that the image is of fair size to work with, not too large or too small.
+The images are usually preprocessed and will not consist of error entry. However, we will be limiting the resolution of the image as a larger resolution could make the construction of the graph costly since we are using an adjacency matrix, which is better optimized for smaller images. However, we also do not want to work with an image of low resolution as this will not give much data to work with nor produce much of an interesting MIDI note sequence. Thus, we will likely impose image resolution constraints in order to ensure that the image is of fair size to work with, not too large or too small.
 
 ## Data Storage
-We will be using a nested for-loop to transfer the image pixels into a graph, and for that we will have an estimate of $O(n^2)$ as the Big O efficiency for time. We will be using the heap for Dijkstra’s algorithms, and it’s time complexity will be $O((|V| + |E|) log V)$ and space will be $O(|V| + |E|)$.
+Data Acquisition: $O(wh)$
+We will be using a nested for-loop to convert the image’s pixels to notes row by row and insert them into a weighted graph represented as an adjacency matrix `M` where the cell `M[i, j]` holds the weight (interval) of the edge connecting vertices (notes) `i` and `j`. This matrix will elicit a time and space complexity of $O(wh)$, where $w$ and $h$ are the width and height of the image in pixels, respectively.
+
+Algorithms: $O(wh)$
+In terms of storage necessary for the two algorithms, Prim’s algorithm must output a minimum spanning tree represented as a new adjacency matrix, requiring a space complexity of $O(|V|)$ where $V$ is the number of vertices in the original matrix, and the A* algorithm requires a priority queue, which its worst case space complexity is also $O(|V|)$. The worst case space complexity for both algorithms combined comes out at $O(|V|) + O(|V|)$, which is just $O(|V|)$. The number of vertices in the original matrix, $V$, is equivalent to the number of pixels in the input image, w*h, so the space complexity can be rewritten as $O(wh)$.
+
+Traversals: $O(V)$
+We will run BFS/DFS traversals on the minimum spanning tree and shortest path trees produced by our algorithms, which (in its iterative implementation) requires the usage of a queue or stack respectively. BFS and DFS both elicit a space complexity of $O(|V|)$, where $V$ is the number of vertices in the minimum spanning tree or shortest path tree, depending on which one the traversal is being used on. This results in a general space complexity of $O(|V|)$, where $V$ is the number of vertices in whichever tree has more.
+
+Output: $O(?)$
+Another consideration to note in terms of storage needs is that we will empty the queue/stack of nodes created by the traversals into two MIDI file classes generated by the Midifile library, which will also take up some amount of space (we don’t really know the exact space because we are outsourcing the process of MIDI file creation).
+
+Total Space: $O(wh)$
+Based on what we know, the total space complexity comes out to as: $O(wh) + O(wh) + O(V)$, where $V$ represents the number of vertices discovered by the BFS/DFS traversals. We know that $wh > V$ because the traversals are going through the minimum spanning tree and shortest path tree, which both are guaranteed to have fewer nodes than the weighted graph that they are based off of, which has $wh$ nodes. Therefore, the result is simplified to: $O(wh) + O(wh)$ which is $O(wh)$.
 
 ## Algorithm
 TBD
