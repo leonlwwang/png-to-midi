@@ -62,6 +62,10 @@ Both BFS and DFS have a time complexity of $O(|V|)$ which again is just $O(wh)$.
 The total time complexity comes out to: $O((wh)^2) + O(E) + O(wh) + O(wh)$, which is simplified to 
 $O((wh)^2) + O(E)$. Depending on which is larger, the number of edges in the weighted graph, $O(E)$, or the dimension of the image squared, $O((wh)^2)$, the larger value will take precedence.
 
+## Further Improvements
+As we know, Prim's algorithm minimizes the total weight of all edges in the graph. And we also know that A* search minimizes the total cost of the path from vertex A to B. Recall that we are defining the weight of an edge to be the interval of notes between two vertices (remember that vertices are notes). If we minimize this edge weight, then we can expect the resulting MIDI files to have sequences of notes that are closer to each other within the chromatic scale. But this doesn't necessarily sound good. What if we aren't interested in minimizing the weight, but we're interested in having the most melodic-sounding interval between notes? Minimization of the cost path is done when the weights have to do with things such as distance, or money, or some unit of measure that we want to optimize the cost of. But in this case, we're interested in finding the best interval between two notes that sound good in sequence -- this way, we can construct a proper melody.
+
+Perhaps we can somehow redefine the "lowest cost" path in Prim's and A* to be the "most melodic" path and run a modified version of the two algorithms.
 
 ## Timeline
 - [x] Data acquisition
@@ -69,7 +73,7 @@ $O((wh)^2) + O(E)$. Depending on which is larger, the number of edges in the wei
 - [ ] Image processing functionality
 - [ ] Prim’s algorithm **at least finish this by mid-project check in**
 - [ ] A* algorithm
-- [ ] BFS/DFS traversal of SPT
+- [ ] BFS/DFS traversal of minimum spanning tree and SPT
 - [ ] Cumulative function testing
 - [ ] Possible improvement for current output
 - [ ] Final tests
