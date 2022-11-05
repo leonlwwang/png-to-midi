@@ -25,7 +25,7 @@ We will be using a nested for-loop to convert the image’s pixels to notes row 
 
 **Algorithms:** $O(wh)$
 
-In terms of the memory necessary for the two algorithms, Prim’s algorithm must output a minimum spanning tree represented as a new adjacency matrix, requiring a space complexity of $O(|V|)$ where $V$ is the number of vertices in the original matrix, and the A* algorithm requires a priority queue, which its worst case space complexity is also $O(|V|)$. The worst case space complexity for both algorithms combined comes out at $O(|V|) + O(|V|)$, which is just $O(|V|)$. The number of vertices in the original matrix, $V$, is equivalent to the number of pixels in the input image, w*h, so the space complexity can be rewritten as $O(wh)$.
+In terms of the memory necessary for the two algorithms, Prim’s algorithm must output a minimum spanning tree represented as a new adjacency matrix, requiring a space complexity of $O(|V|)$ where $V$ is the number of vertices in the original matrix, and the A* algorithm requires a priority queue, which its worst case space complexity is also $O(|V|)$. The worst case space complexity for both algorithms combined comes out at $O(|V|) + O(|V|)$, which is just $O(|V|)$. The number of vertices in the original matrix, $V$, is equivalent to the number of pixels in the input image, $wh$, so the space complexity can be rewritten as $O(wh)$.
 
 **Traversals:** $O(V)$
 
