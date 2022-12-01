@@ -4,7 +4,7 @@
  * Implementation of a data structure that represents piano notes as a superset of the
  * Key data type, adding a range of ten octave levels and distance measurement. 
  *
- * @author Leon Wang
+ * @author Leon Wang, Johnson Chiang, Patrick Han
  * @date Fall 2022
  */
 
