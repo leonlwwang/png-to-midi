@@ -48,7 +48,7 @@ struct Note : public Key
 
    /**
     * Distance method
-    * @returns the number of keys from C0 (0) to the Key
+    * @return the number of keys from C0 (0) to the Key
     */
    int distance() const {
       return key.value + (octave*10);
@@ -60,6 +60,9 @@ struct Note : public Key
     * @return interval between two Notes (UNSCALED, scale to one octave using mod 10)
     */
    int operator-(const Note &rhs) {
+      if (this->distance() == rhs.distance()) {
+         return 0;
+      }
       return std::abs(this->distance() - rhs.distance()) - 1;
    }
 
