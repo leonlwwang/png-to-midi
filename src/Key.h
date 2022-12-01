@@ -4,7 +4,9 @@
  * Implementation of a data structure that defines a piano key as a subset of the
  * primitive character datatype with a custom conversion method to integer.
  *
- * @author Leon Wang, Johnson Chiang, Patrick Han
+ * @author Leon Wang
+ * @author Johnson Chiang
+ * @author Patrick Han
  * @date Fall 2022
  */
 
