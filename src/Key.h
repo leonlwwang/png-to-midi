@@ -13,6 +13,7 @@
 #pragma once
 
 #include <map>
+#include <set>
 #include <cmath>
 #include <string>
 #include <sstream>
@@ -83,6 +84,18 @@ struct Key
                                   {6,'f'},{7,'G'},{8,'g'},{9,'A'},{10,'a'},{11,'B'}
                                   };
       return isKey(toChar[(int) std::fmod(pixel.h, 12)]);
+   }
+
+   /**
+    * Sharp checker
+    * @return whether the Key is a sharp
+    */
+   bool isSharp() const {
+      std::set<char> sharps = {'c','d','f','g','a'};
+      if (sharps.find(key) != sharps.end()) {
+         return true;
+      }
+      return false;
    }
 };
 
