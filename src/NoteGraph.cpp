@@ -127,3 +127,7 @@ void NoteGraph::printGraph(const unsigned int threshold) {
        std::cout << "<and " << remainder << " more rows>\n";
    }
 }
+
+bool NoteGraph::operator==(const NoteGraph &rhs) const {
+   return (graph_ == rhs.graph_ && noteTable_ == rhs.noteTable_);
+}

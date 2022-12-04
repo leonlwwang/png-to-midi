@@ -53,6 +53,13 @@ class NoteGraph
          */
         void printGraph(const unsigned int threshold = 20);
 
+        /**
+         * Overload operator ==
+         * @param rhs the other NoteGraph
+         * @return whether the NoteGraphs are equal
+         */
+        bool operator==(const NoteGraph &rhs) const;
+
     private:
         matrix graph_;
         std::map<int,Note> noteTable_;

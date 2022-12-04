@@ -55,6 +55,15 @@ struct Note : public Key
    }
 
    /**
+    * Pixel-to-octave conversion method
+    * @param pixel the HSLAPixel
+    * @return the octave representation of the pixel
+    */
+   int getOctave(const cs225::HSLAPixel &pixel) {
+      return (int) std::fmod(pixel.s*10, 10);
+   }
+
+   /**
     * Overload operator -
     * @param rhs The other Note
     * @return interval between two Notes (UNSCALED, scale to one octave using mod 10)
@@ -67,12 +76,12 @@ struct Note : public Key
    }
 
    /**
-    * Pixel-to-octave conversion method
-    * @param pixel the HSLAPixel
-    * @return the octave representation of the pixel
+    * Overload operator ==
+    * @param rhs The other Note
+    * @return whether the Notes are equal
     */
-   int getOctave(const cs225::HSLAPixel &pixel) {
-      return (int) std::fmod(pixel.s*10, 10);
+   bool operator==(const Note &rhs) const {
+      return (key == rhs.key && octave == rhs.octave);
    }
 };
 

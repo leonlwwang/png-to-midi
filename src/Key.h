@@ -97,6 +97,15 @@ struct Key
       }
       return false;
    }
+
+   /**
+    * overload operator ==
+    * @param rhs the other Key
+    * @return whether the Keys are equal
+    */
+   bool operator==(const Key &rhs) const {
+      return (key == rhs.key && value == rhs.value);
+   }
 };
 
    /**
