@@ -48,7 +48,7 @@ class NoteGraph
         /**
          * Graph output function
          */
-        void printGraph(const unsigned int threshold = 25);
+        void printGraph(const unsigned int threshold = 20);
 
     private:
         matrix graph_;
