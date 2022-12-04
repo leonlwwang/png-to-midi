@@ -87,33 +87,38 @@ void NoteGraph::printGraph(const unsigned int threshold) {
    }
    else { limit = graph_.size(); }
    // header
-   std::cout << "     ";
+   std::cout << "      ";
    for (size_t i = 0; i < limit; i++) {
        std::cout << noteTable_[i] << " ";
        if (!noteTable_[i].key.isSharp()) {
-           std::cout << " ";
+         std::cout << " ";
+       }
+       if (noteTable_[i].octave+1 < 10) {
+         std::cout << " ";
        }
    }
    std::cout << "\n";
    // row by row
    for (size_t i = 0; i < limit; i++) {
-       if (!noteTable_[i].key.isSharp()) {
-           std::cout << noteTable_[i] << "   ";
-       } else {
-           std::cout << noteTable_[i] << "  ";
-       }
-       for (size_t j = 0; j < limit; j++) {
-           if (graph_[i][j] == 0) {
-               std::cout << "-   ";
-           } else {
-               std::cout << graph_[i][j];
-               int n = graph_[i][j] / 10;
-               if (n < 1) { std::cout << "   "; }
-               else if (n < 10) { std::cout << "  "; }
-               else { std::cout << " "; }
-           }
-       }
-       std::cout << "\n";
+      std::cout << noteTable_[i] << "  ";
+      if (!noteTable_[i].key.isSharp()) {
+         std::cout << " ";
+      }
+      if (noteTable_[i].octave+1 < 10) {
+         std::cout << " ";
+      }
+      for (size_t j = 0; j < limit; j++) {
+          if (graph_[i][j] == 0) {
+            std::cout << "-    ";
+          } else {
+              std::cout << graph_[i][j];
+              int n = graph_[i][j] / 10;
+              if (n < 1) { std::cout << "    "; }
+              else if (n < 10) { std::cout << "   "; }
+              else { std::cout << "  "; }
+          }
+      }
+      std::cout << "\n";
    }
    if (remainder != 0) {
        std::cout << "<and " << remainder << " more rows>\n";
