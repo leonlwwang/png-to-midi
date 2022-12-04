@@ -101,6 +101,7 @@ void NoteGraph::printGraph(const unsigned int threshold) {
    // row by row
    for (size_t i = 0; i < limit; i++) {
       std::cout << noteTable_[i] << "  ";
+      // extra spacing depending on the Note
       if (!noteTable_[i].key.isSharp()) {
          std::cout << " ";
       }
@@ -111,6 +112,7 @@ void NoteGraph::printGraph(const unsigned int threshold) {
           if (graph_[i][j] == 0) {
             std::cout << "-    ";
           } else {
+              // extra spacing depending on the value
               std::cout << graph_[i][j];
               int n = graph_[i][j] / 10;
               if (n < 1) { std::cout << "    "; }
@@ -120,6 +122,7 @@ void NoteGraph::printGraph(const unsigned int threshold) {
       }
       std::cout << "\n";
    }
+   // if graph is too large, detail remainding rows
    if (remainder != 0) {
        std::cout << "<and " << remainder << " more rows>\n";
    }

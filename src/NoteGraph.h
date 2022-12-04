@@ -46,7 +46,10 @@ class NoteGraph
         std::map<int,Note> noteTable() const;
 
         /**
-         * Graph output function
+         * Graph output function with proper spacing and organization
+         * NOTE that there is a set limit to row/col prints because it can
+         * overflow the terminal. You can override it, but it's not recommended.
+         * @param threshold limit to number of row/cols printed, default=20
          */
         void printGraph(const unsigned int threshold = 20);
 
