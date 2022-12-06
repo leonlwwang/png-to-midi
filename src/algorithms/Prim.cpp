@@ -13,12 +13,13 @@
 
 NoteGraph notealgorithm::prim(const NoteGraph &graph) {
     int edge = 0, V = (int) graph.noteTable().size();
+    matrix MST(V, std::vector<int>(V, 0));
     matrix G = graph.graph();
     std::vector<bool> visited(V, false);
     visited[0] = true;
-    std::cout << "Edge : Weight\n";
+    //std::cout<<"Edge : Weight\n";
     while (edge < (V-1)) {
-        int minimum = 121; // 120 is max note-to-note distance
+        int minimum = 121; // 120 is max edge-to-edge distance
         int edgeA = 0, edgeB = 0;
         for (int i = 0; i < V; i++) {
             if (visited[i]) {
@@ -33,9 +34,11 @@ NoteGraph notealgorithm::prim(const NoteGraph &graph) {
                 }
             }
         }
-        std::cout << edgeA << " - " << edgeB << " : " << G[edgeA][edgeB] << "\n";
+        MST[edgeA][edgeB] = G[edgeA][edgeB];
+        MST[edgeB][edgeA] = G[edgeA][edgeB];
         visited[edgeB] = true;
         edge++;
+        //std::cout<<edgeA<<" - "<<edgeB<<" : "<<G[edgeA][edgeB]<<"\n";
     }
-    return NoteGraph();
+    return NoteGraph(MST, graph.noteTable());
 }
