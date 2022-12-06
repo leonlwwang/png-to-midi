@@ -11,7 +11,6 @@
 
 #include "AStar.h"
 
-NoteGraph aStar(const NoteGraph &graph) 
-{
+NoteGraph notealgorithm::aStar(const NoteGraph &graph) {
     return NoteGraph(); // @todo!
 }

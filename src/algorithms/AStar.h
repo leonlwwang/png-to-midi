@@ -13,15 +13,11 @@
 
 #include "NoteGraph.h"
 
-class AStar : public NoteGraph {
-    public:
-        /**
-         * Run's A* algorithm on a graph.
-         * @param graph the NoteGraph
-         * @return the Minimum Spanning Tree (MST)
-         */
-        NoteGraph aStar(const NoteGraph &graph);
-
-    private:
-        // @todo!
-};
+namespace notealgorithm {
+    /**
+     * Runs A* algorithm on a graph.
+     * @param graph the NoteGraph
+     * @return the Minimum Spanning Tree (MST)
+     */
+    NoteGraph aStar(const NoteGraph &graph);
+}
