@@ -16,6 +16,10 @@ using namespace cs225;
 
 NoteGraph::NoteGraph() : graph_({{}}), noteTable_({}) {}
 
+NoteGraph::NoteGraph(matrix graph, 
+                     std::map<int,Note> noteTable) : graph_(graph), 
+                                                     noteTable_(noteTable) {}
+
 NoteGraph::NoteGraph(const PNG &png) : graph_({{}}), noteTable_({}) {
    pngToGraph(png);
 }

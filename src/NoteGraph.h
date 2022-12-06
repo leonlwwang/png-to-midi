@@ -28,6 +28,7 @@ class NoteGraph
          * Constructors
          */
         NoteGraph();
+        NoteGraph(matrix graph, std::map<int,Note> noteTable);
         NoteGraph(const cs225::PNG &png);
         NoteGraph(const std::string &fileName);
 
