@@ -34,7 +34,7 @@ class NoteGraph
 
         /**
          * Creates a graph of Notes using a PNG file and
-         * erases previous data loaded in the graph and table.
+           erases previous data loaded in the graph and table.
          * Non-default constructors internally call this.
          * @param png the PNG file
          */
@@ -47,9 +47,9 @@ class NoteGraph
         std::map<int,Note> noteTable() const;
 
         /**
-         * Graph output function with proper spacing and organization
+         * Graph output function with proper spacing and organization.
          * NOTE that there is a set limit to row/col prints because it can
-         * overflow the terminal. You can override it, but it's not recommended.
+           overflow the terminal. You can override it, but it's not recommended.
          * @param threshold limit to number of row/cols printed, default=20
          */
         void printGraph(const unsigned int threshold = 20);
@@ -67,15 +67,15 @@ class NoteGraph
 
         /**
          * Resets the state of the NoteGraph object and
-         * clears private instance variables.
+           clears private instance variables.
          * @param resolution the new PNG resolution (x*y)
          */
         void reset(int resolution);
 
         /**
          * Given x,y coordinates for an HSLAPixel, converts it into a 
-         * Note and adds it as a vertex to the note table, then checks 
-         * for adjacent HSLAPixels which are added as weighted edges to the graph.
+           Note and adds it as a vertex to the note table, then checks 
+           for adjacent HSLAPixels which are added as weighted edges to the graph.
          * @param x coordinate of pixel (row)
          * @param y coordinate of pixel (col)
          * @param i ith pixel out of (x*y)

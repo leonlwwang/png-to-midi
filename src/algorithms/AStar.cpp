@@ -14,3 +14,7 @@
 NoteGraph notealgorithm::aStar(const NoteGraph &graph) {
     return NoteGraph(); // @todo!
 }
+
+int notealgorithm::manh(int start, int end, const NoteGraph &graph) {
+    return 0; // @todo!
+}

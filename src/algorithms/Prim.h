@@ -16,7 +16,7 @@
 namespace notealgorithm {
     /**
      * Run Prim's algorithm on a NoteGraph and constructs
-     * a minimum spanning tree out of the pathway. 
+       a minimum spanning tree out of the pathway. 
      * @param graph the NoteGraph
      * @return the Minimum Spanning Tree (MST)
      */
