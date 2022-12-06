@@ -24,4 +24,4 @@ class AStar : public NoteGraph {
 
     private:
         // @todo!
-}
+};
