@@ -13,7 +13,7 @@
 
 NoteGraph notealgorithm::prim(const NoteGraph &graph) {
     int edge = 0, V = (int) graph.noteTable().size();
-    matrix MST(V, std::vector<int>(V, 0));
+    matrix MSTdata(V, std::vector<int>(V, 0));
     matrix G = graph.graph();
     std::vector<bool> visited(V, false);
     visited[0] = true;
@@ -34,11 +34,13 @@ NoteGraph notealgorithm::prim(const NoteGraph &graph) {
                 }
             }
         }
-        MST[edgeA][edgeB] = G[edgeA][edgeB];
-        MST[edgeB][edgeA] = G[edgeA][edgeB];
+        MSTdata[edgeA][edgeB] = G[edgeA][edgeB];
+        MSTdata[edgeB][edgeA] = G[edgeA][edgeB];
         visited[edgeB] = true;
         edge++;
         //std::cout<<edgeA<<" - "<<edgeB<<" : "<<G[edgeA][edgeB]<<"\n";
     }
-    return NoteGraph(MST, graph.noteTable());
+    NoteGraph MST = graph;
+    MST.setGraph(MSTdata);
+    return MST;
 }
