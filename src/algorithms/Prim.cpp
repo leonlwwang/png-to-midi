@@ -12,33 +12,37 @@
 #include "Prim.h"
 
 NoteGraph notealgorithm::prim(const NoteGraph &graph) {
-    int edge = 0, V = (int) graph.noteTable().size();
+    int node = 0, V = (int) graph.noteTable().size();
     matrix MSTdata(V, std::vector<int>(V, -1));
     matrix G = graph.graph();
     std::vector<bool> visited(V, false);
     visited[0] = true;
     //std::cout<<"Edge : Weight\n";
-    while (edge < (V-1)) {
-        int minimum = 121; // 120 is max edge-to-edge distance
-        int edgeA = 0, edgeB = 0;
+    while (node < (V-1)) {
+        int minimum = 121; // 120 is max edge value
+        int nodeA = 0, nodeB = 0;
         for (int i = 0; i < V; i++) {
+            // check the current MST tree
             if (visited[i]) {
-                for (int j = 0; j < V; j++) {
+                for (int j = 0; j < V; j++) {  
+                    // check for an edge
                     if (!visited[j] && G[i][j] != -1) {
+                        // check if edge is smaller than current min
                         if (minimum > G[i][j]) {
                             minimum = G[i][j];
-                            edgeA = i;
-                            edgeB = j;
+                            nodeA = i;
+                            nodeB = j;
                         }
                     }
                 }
             }
         }
-        MSTdata[edgeA][edgeB] = G[edgeA][edgeB];
-        MSTdata[edgeB][edgeA] = G[edgeA][edgeB];
-        visited[edgeB] = true;
-        edge++;
-        //std::cout<<edgeA<<" - "<<edgeB<<" : "<<G[edgeA][edgeB]<<"\n";
+        // add the minimum value edge to MST
+        MSTdata[nodeA][nodeB] = G[nodeA][nodeB];
+        MSTdata[nodeB][nodeA] = G[nodeA][nodeB];
+        visited[nodeB] = true;
+        node++; // next node
+        //std::cout<<nodeA<<" - "<<nodeB<<" : "<<G[nodeA][nodeB]<<"\n";
     }
     NoteGraph MST = graph;
     MST.setGraph(MSTdata);
