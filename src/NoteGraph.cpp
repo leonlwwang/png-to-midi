@@ -50,7 +50,7 @@ void NoteGraph::pngToGraph(const PNG &png) {
 void NoteGraph::reset(int resolution) {
    graph_.clear();
    noteTable_.clear();
-   graph_.resize(resolution, std::vector<int>(resolution));
+   graph_.resize(resolution, std::vector<int>(resolution, -1));
 }
 
 void NoteGraph::addToGraph(unsigned int x, unsigned int y, int i, const PNG &png) {
@@ -133,7 +133,7 @@ void NoteGraph::printGraph(const unsigned int threshold) {
          std::cout << " ";
       }
       for (size_t j = 0; j < limit; j++) {
-          if (graph_[i][j] == 0) {
+          if (graph_[i][j] == -1) {
             std::cout << "-    ";
           } else {
               // extra spacing depending on the value

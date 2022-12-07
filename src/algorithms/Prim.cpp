@@ -13,7 +13,7 @@
 
 NoteGraph notealgorithm::prim(const NoteGraph &graph) {
     int edge = 0, V = (int) graph.noteTable().size();
-    matrix MSTdata(V, std::vector<int>(V, 0));
+    matrix MSTdata(V, std::vector<int>(V, -1));
     matrix G = graph.graph();
     std::vector<bool> visited(V, false);
     visited[0] = true;
@@ -24,7 +24,7 @@ NoteGraph notealgorithm::prim(const NoteGraph &graph) {
         for (int i = 0; i < V; i++) {
             if (visited[i]) {
                 for (int j = 0; j < V; j++) {
-                    if (!visited[j] && G[i][j]) {
+                    if (!visited[j] && G[i][j] != -1) {
                         if (minimum > G[i][j]) {
                             minimum = G[i][j];
                             edgeA = i;
