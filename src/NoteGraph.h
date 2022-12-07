@@ -28,7 +28,7 @@ class NoteGraph
          * Constructors
          */
         NoteGraph();
-        NoteGraph(matrix graph, std::map<int,Note> noteTable);
+        NoteGraph(matrix graph, std::map<int,Note> noteTable, int width);
         NoteGraph(const cs225::PNG &png);
         NoteGraph(const std::string &fileName);
 
@@ -45,6 +45,7 @@ class NoteGraph
          */
         matrix graph() const;
         std::map<int,Note> noteTable() const;
+        int width() const;
 
         /**
          * Graph output function with proper spacing and organization.
@@ -64,6 +65,7 @@ class NoteGraph
     private:
         matrix graph_;
         std::map<int,Note> noteTable_;
+        int width_;
 
         /**
          * Resets the state of the NoteGraph object and

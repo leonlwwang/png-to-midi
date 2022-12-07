@@ -14,20 +14,24 @@
 
 using namespace cs225;
 
-NoteGraph::NoteGraph() : graph_({{}}), noteTable_({}) {}
+NoteGraph::NoteGraph() : graph_({{}}), noteTable_({}), width_(0) {}
 
 NoteGraph::NoteGraph(matrix graph, 
-                     std::map<int,Note> noteTable) : graph_(graph), 
-                                                     noteTable_(noteTable) {}
+                     std::map<int,Note> noteTable, int width) : graph_(graph), 
+                                                     noteTable_(noteTable),
+                                                     width_(width) {}
 
-NoteGraph::NoteGraph(const PNG &png) : graph_({{}}), noteTable_({}) {
+NoteGraph::NoteGraph(const PNG &png) : graph_({{}}), noteTable_({}), 
+                                                     width_(png.width()) {
    pngToGraph(png);
 }
 
 NoteGraph::NoteGraph(const std::string &fileName) : graph_({{}}), 
-                                                    noteTable_({}) {
+                                                    noteTable_({}),
+                                                    width_(0) {
    PNG png = PNG();
    png.readFromFile(fileName);
+   width_ = png.width();
    pngToGraph(png);
 }
 
@@ -80,6 +84,10 @@ matrix NoteGraph::graph() const {
 
 std::map<int,Note> NoteGraph::noteTable() const {
    return noteTable_;
+}
+
+int NoteGraph::width() const {
+   return width_;
 }
 
 void NoteGraph::printGraph(const unsigned int threshold) {
