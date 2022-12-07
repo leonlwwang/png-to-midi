@@ -48,6 +48,13 @@ class NoteGraph
         int width() const;
 
         /**
+         * Setters
+         */
+        void setGraph(matrix newGraph);
+        void setNoteTable(std::map<int,Note> newNoteTable);
+        void setWidth(int newWidth);
+
+        /**
          * Graph output function with proper spacing and organization.
          * NOTE that there is a set limit to row/col prints because it can
            overflow the terminal. You can override it, but it's not recommended.

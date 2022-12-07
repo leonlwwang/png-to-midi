@@ -90,6 +90,18 @@ int NoteGraph::width() const {
    return width_;
 }
 
+void NoteGraph::setGraph(matrix newGraph) {
+   graph_ = newGraph;
+}
+
+void NoteGraph::setNoteTable(std::map<int,Note> newNoteTable) {
+   noteTable_ = newNoteTable;
+}
+
+void NoteGraph::setWidth(int newWidth) {
+   width_ = newWidth;
+}
+
 void NoteGraph::printGraph(const unsigned int threshold) {
    // output size limiter
    unsigned limit = 0, remainder = 0;
