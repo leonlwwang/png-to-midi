@@ -21,9 +21,9 @@ struct Note : public Key
    unsigned int octave;
 
    /**
-    * Default constructor, set at 5C (C key on 5th octave)
+    * Default constructor, uninitialized Note 
     */
-   Note() : key(Key()), octave(5-1) {}
+   Note() : key(Key()), octave(0) {}
 
    /**
     * Key constructor
@@ -64,11 +64,22 @@ struct Note : public Key
    }
 
    /**
+    * Null checker
+    * @return whether a Note is initialized
+    */
+   bool empty() const {
+      return key.empty();
+   }
+
+   /**
     * Overload operator -
     * @param rhs The other Note
     * @return interval between two Notes (UNSCALED, scale to one octave using mod 10)
     */
    int operator-(const Note &rhs) {
+      if (this->empty() || rhs.empty()) {
+         return -1;
+      }
       if (this->distance() == rhs.distance()) {
          return 0;
       }
@@ -92,6 +103,10 @@ struct Note : public Key
     * @return Output stream
     */
 inline std::ostream & operator<<(std::ostream &out, Note const &note) {
+   if (note.empty()) {
+      out << "NULL";
+      return out;
+   }
    out << note.octave+1 << note.key;
    return out;
 }
