@@ -46,3 +46,6 @@ _deps
 
 # .DS_Store files for Mac
 **/.DS_Store
+
+# CMake build folder
+build/*
