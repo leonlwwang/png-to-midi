@@ -51,7 +51,7 @@ struct Note : public Key
     * @return the number of keys from C0 (0) to the Key
     */
    int distance() const {
-      return key.value + (octave*10);
+      return key.value + (octave*12);
    }
 
    /**
