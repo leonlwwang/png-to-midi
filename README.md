@@ -2,7 +2,7 @@
 
 by Leon Wang, Johnson Chiang, Patrick Han
 
-### About
+## About
 
 For the CS 225 Final Project, we wanted to test the “musical quality” of an image. The question we are interested in answering is that given a .png file, can we produce a melodic sequence of notes out of the image data?
 
@@ -10,7 +10,7 @@ Full project details and overview can be found in `team_proposal.md`. A visual w
 
 **// ADD VIDEO HERE //**
 
-### Instructions
+## Instructions
 
 To build the project, navigate to the `./build` directory and run `make` to build the project. 
 
@@ -28,12 +28,12 @@ To run our test suite, in the terminal `make test` in the `./build` directory an
 
 ## File Structure
 
-#### Codebase
+### Codebase
 
 We used [midifile](https://github.com/craigsapp/midifile), [lodepng](https://github.com/lvandeve/lodepng), and the [CS225 PNG/HSLAPixel libraries](https://github.com/cs225-illinois/release-f22/tree/main/mp_stickers/lib) to provide infrastructure for our codebase. These libraries can be accessed in `./lib`.
 
 All major files in our codebase are located in `./src`. The weighted graph and data-parsing details are located in `Key.h`, `Note.h`, `NoteGraph.cpp`, and `NoteGraph.h`. The algorithms and traversals are located in `./src/algorithms/`. 
 
-#### Tests
+### Tests
 
 Our test suite is located in `./tests`. There are six .cpp files inside that test each part of our code.
