@@ -1,4 +1,4 @@
-# PNG-to-MIDI...?
+# PNG To Music
 
 by Leon Wang, Johnson Chiang, Patrick Han
 
