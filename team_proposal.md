@@ -69,12 +69,12 @@ Perhaps we can somehow redefine the "lowest cost" path in Prim's and A* to be th
 
 ## Timeline
 - [x] Data acquisition
-- [ ] Environment setup (files, libraries, git)
-- [ ] Image processing functionality
-- [ ] Prim’s algorithm **at least finish this by mid-project check in**
-- [ ] A* algorithm
-- [ ] BFS/DFS traversal of minimum spanning tree and SPT
-- [ ] Cumulative function testing
-- [ ] Possible improvement for current output
-- [ ] Final tests
-- [ ] Submission/presentation
+- [x] Environment setup (files, libraries, git)
+- [x] Image processing functionality
+- [x] Prim’s algorithm **at least finish this by mid-project check in**
+- [x] A* algorithm
+- [x] BFS/DFS traversal of minimum spanning tree and SPT
+- [x] Cumulative function testing
+- [x] Possible improvement for current output (Leon discussed with Abhilash about graph efficiency improvements)
+- [x] Final tests
+- [x] Submission/presentation
