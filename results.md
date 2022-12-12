@@ -4,7 +4,7 @@
 
 This report will visually demonstrate how the `Prim` and `AStar` files in this project are executed upon a `NoteGraph` object (which, at its core, is just a weighted graph) and then briefly discuss the findings of the project. For this demo, the `3x3.png` image will be used to load the NoteGraph. You can find this image in `images/basic` and it looks like this:
 
-![3x3](./images/basic/3x3.png)
+![3x3](./images/markdown/3x3big.png)
 
 This is what the weighted graph would look like visually if you load this image into a NoteGraph object.
 
