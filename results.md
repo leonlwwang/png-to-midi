@@ -58,7 +58,7 @@ Now, we have our calculated heuristic cost for stepping into each adjacent node.
 
 ![3x3](./images/markdown/3x3graph-astar-step3.jpg)
 
-We step into **6F#** because (22 + 31) > (15 + 152), and repeat the steps above on that node.
+We step into **6F#** because 167 > 53, and repeat the steps above on that node.
 
 ![3x3](./images/markdown/3x3graph-astar-step4.jpg)
 
