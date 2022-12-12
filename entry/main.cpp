@@ -10,7 +10,7 @@ int main()
 {
     /* full demonstration */
     std::cout << "\n\t\t\t\t\t\tORIGINAL GRAPH \n\n";
-    NoteGraph test = NoteGraph("../images/basic/3x3.png");
+    NoteGraph test = NoteGraph("../images/basic/2x2.png");
     test.printGraph();
 
     std::cout << "\nDFS:\t";
