@@ -3,7 +3,6 @@
 #include "Key.h"
 
 using namespace cs225;
-/** ADD TESTS HERE **/
 
 TEST_CASE("Initializing Key Object Using Invalid Key", "[weight=1]") {
     REQUIRE_THROWS_AS( Key('S'), std::invalid_argument );
