@@ -2,8 +2,6 @@
 
 #include "algorithms/Prim.h"
 
-/** ADD TESTS HERE **/
-
 using namespace cs225;
 
 
