@@ -2,7 +2,6 @@
 
 #include "algorithms/AStar.h"
 
-/** ADD TESTS HERE **/
 NoteGraph n = NoteGraph("../images/basic/3x3.png");
 NoteGraph n_2 = NoteGraph("../images/basic/2x2.png");
 NoteGraph n_3 = NoteGraph();
