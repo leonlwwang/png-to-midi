@@ -1,6 +1,6 @@
 # Project Report
 
-**by Leon Wang**
+> by Leon Wang
 
 This report will visually demonstrate how the `Prim` and `AStar` files in this project are executed upon a `NoteGraph` object (which, at its core, is just a weighted graph) and then briefly discuss the findings of the project. For this demo, the `3x3.png` image will be used to load the NoteGraph. You can find this image in `images/basic` and it looks like this:
 
