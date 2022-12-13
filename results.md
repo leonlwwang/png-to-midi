@@ -73,4 +73,10 @@ Finally, this is the MST produced after the algorithm completes.
 To ensure that A* works on our NoteGraphs, we compared if the MST produced by our `aStar` function matched the expected MST for a variety of NoteGraphs, and because `aStar` internally calls `manh`, our Manhattan distance function, also tested whether that function worked.
 
 ### Project Findings
-// todo
+Generally, the project was a success and we found that it was possible to generate a sequence of notes out of an image. There are a lot of things that this project has great potential for, however, and thus still leaves much to be desired in some aspects. 
+
+Firstly, we did not end up using our Midifile library due to time constraints and the complexity of the library. Thus, we did not actually export the sequence of generated notes into a MIDI file, however, the sequence is still readable as musical notes and can be replicated in music production or manually interpreted into a piano roll in music software. In the interest of time, we felt that it was better to focus on the contents of the project that revolve around CS225 concepts first rather than focusing on figuring out how the Midifile library operates.
+
+Next, by using a custom devised algorithm, we may be able to elicit a sequence of **melodic** notes out of an image, which could potentially be used in actual music production or songwriting. This is something to think of implementing in the future.
+
+Another improvement that could be explored is the memory efficiency of the graph. We could only produce graphs out of images under roughly 150x150 in resolution, which is pretty low and means that our implementation does not scale well. By going back and changing up how the matrix is designed, we can be much more memory efficient and load actual high-res images into our algorithm.
