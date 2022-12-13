@@ -10,7 +10,6 @@ Note test_note = Note(test_key, 1);
 Note test_note_2 = Note(test_key_2, 2);
 Note test_note_3 = Note(test_key_3, 1);
 
-/** ADD TESTS HERE **/
 TEST_CASE("Constructor-Key", "[weight=10][part1]")
 {
 	REQUIRE(test_note.key.key == 'C');
