@@ -1,6 +1,6 @@
-# PNG To Music
+# PNG-to-Music
 
-by Leon Wang, Johnson Chiang, Patrick Han
+> by Team Patreonson (Leon Wang, Johnson Chiang, Patrick Han)
 
 ## About
 
