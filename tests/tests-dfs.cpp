@@ -2,9 +2,6 @@
 
 #include "algorithms/DFS.h"
 
-/** ADD TESTS HERE **/
-
-
 using namespace cs225;
 
 TEST_CASE("DFS Works On 2x2 NoteGraph", "[weight=1]") {
