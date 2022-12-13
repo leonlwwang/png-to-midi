@@ -8,7 +8,7 @@ For the CS 225 Final Project, we wanted to test the “musical quality” of an 
 
 Full project details and overview can be found in `team_proposal.md`. A visual walkthrough of the algorithms used and project findings can be found in `results.md` (the report).
 
-**// ADD VIDEO HERE //**
+https://user-images.githubusercontent.com/69338674/207208450-a08ef584-9273-44ec-8697-84ec0cba454c.mp4
 
 ## Instructions
 
