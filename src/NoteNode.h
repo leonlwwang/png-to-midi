@@ -5,8 +5,6 @@
  * weighted edges to make a graph of nodes.
  *
  * @author Leon Wang
- * @author Johnson Chiang
- * @author Patrick Han
  * @date Fall 2022
  */
 
