@@ -14,144 +14,172 @@
 
 using namespace cs225;
 
-NoteGraph::NoteGraph() : graph_({{}}), noteTable_({}), width_(0) {}
+NoteGraph::NoteGraph() : graph_({{}}) {}
 
-NoteGraph::NoteGraph(matrix graph, 
-                     std::map<int,Note> noteTable, int width) : graph_(graph), 
-                                                     noteTable_(noteTable),
-                                                     width_(width) {}
+NoteGraph::NoteGraph(matrix graph) : graph_(graph) {}
 
-NoteGraph::NoteGraph(const PNG &png) : graph_({{}}), noteTable_({}), 
-                                                     width_(png.width()) {
+NoteGraph::NoteGraph(const PNG &png) : graph_({{}}) {
    pngToGraph(png);
 }
 
-NoteGraph::NoteGraph(const std::string &fileName) : graph_({{}}), 
-                                                    noteTable_({}),
-                                                    width_(0) {
+NoteGraph::NoteGraph(const std::string &fileName) : graph_({{}}) {
    PNG png = PNG();
    png.readFromFile(fileName);
-   width_ = png.width();
    pngToGraph(png);
 }
 
 void NoteGraph::pngToGraph(const PNG &png) {
-   reset(png.width()*png.height());
-   unsigned int i = 0;
+   graph_.clear();
+   graph_.resize(png.width(), std::vector<NoteNode>(png.height()));
+   // initialize nodes (x is column, y is row)
    for (unsigned y = 0; y < png.height(); y++) {
       for (unsigned x = 0; x < png.width(); x++) {
-         addToGraph(x,y,i,png);
-         i++;
+         graph_[y][x] = NoteNode(Note(png.getPixel(x,y)));
+      }
+   }
+   // add edges
+   for (unsigned y = 0; y < png.height(); y++) {
+      for (unsigned x = 0; x < png.width(); x++) {
+         addEdges(x, y, png);
       }
    }
    return;
 }
 
-void NoteGraph::reset(int resolution) {
-   graph_.clear();
-   noteTable_.clear();
-   graph_.resize(resolution, std::vector<int>(resolution, -1));
-}
-
-void NoteGraph::addToGraph(unsigned int x, unsigned int y, int i, const PNG &png) {
-   // std::cout<<"("<<x<<","<<y<<")\t["<<i<<"/"<<png.height()*png.width()-1<<"]\n";
-   noteTable_[i] = Note(png.getPixel(x,y));
+void NoteGraph::addEdges(unsigned int x, unsigned int y, const PNG &png) {
+   /* WARNING: changing the order of this can mess up the output. See line 87.*/
+   // right
    if (x+1 < png.width()) {
-      int interval = Note(png.getPixel(x,y)) - Note(png.getPixel(x+1,y));
-      graph_[i][i+1] = interval;
-      graph_[i+1][i] = interval;
+      graph_[y][x].addEdge(graph_[y][x+1]);
    }
-   if ((int)(x-1) >= 0) {
-      int interval = Note(png.getPixel(x,y)) - Note(png.getPixel(x-1,y));
-      graph_[i][i-1] = interval;
-      graph_[i-1][i] = interval;
-   }
+   // down
    if (y+1 < png.height()) {
-      int interval = Note(png.getPixel(x,y)) - Note(png.getPixel(x,y+1));
-      graph_[i][i+png.width()] = interval;
-      graph_[i+png.width()][i] = interval;
+      graph_[y][x].addEdge(graph_[y+1][x]);
    }
+   // left
+   if ((int)(x-1) >= 0) {
+      graph_[y][x].addEdge(graph_[y][x-1]);
+   }
+   // up
    if ((int)(y-1) >= 0) {
-      int interval = Note(png.getPixel(x,y)) - Note(png.getPixel(x,y-1));
-      graph_[i][i-png.width()] = interval;
-      graph_[i-png.width()][i] = interval;
+      graph_[y][x].addEdge(graph_[y-1][x]);
    }
 }
 
-matrix NoteGraph::graph() const {
+matrix NoteGraph::graph() {
    return graph_;
-}
-
-std::map<int,Note> NoteGraph::noteTable() const {
-   return noteTable_;
-}
-
-int NoteGraph::width() const {
-   return width_;
 }
 
 void NoteGraph::setGraph(matrix newGraph) {
    graph_ = newGraph;
 }
 
-void NoteGraph::setNoteTable(std::map<int,Note> newNoteTable) {
-   noteTable_ = newNoteTable;
-}
+void NoteGraph::printGraph() {
+   /* PRINT LIMITS */
+   unsigned row = graph_.size();
+   if (row > 31) {
+      row = 31;
+   }
+   unsigned col = graph_[0].size();
+   if (col > 11) {
+      col = 11;
+   }
 
-void NoteGraph::setWidth(int newWidth) {
-   width_ = newWidth;
-}
+   for (unsigned i = 0; i < row; i++) {
+      std::vector<int> downs;
+      for (unsigned j = 0; j < col; j++) {
+         /* PRINT NODES */
+         std::cout << "[";
+         Note n = graph_[i][j].note;
+         if (n.octave+1 < 10 || (!n.key.isSharp())) {
+            std::cout << "  ";
+         } else {
+            std::cout << " ";
+         }
+         std::cout << n;
+         if (n.octave+1 < 10) {
+            std::cout << " ";
+         }
+         if (!n.key.isSharp()) {
+            std::cout << " ";
+         }
+         if (n.octave+1 > 10 && n.key.isSharp()) {
+            std::cout << " ";
+         }
+         std::cout << "]";
 
-void NoteGraph::printGraph(const unsigned int threshold) {
-   // output size limiter
-   unsigned limit = 0, remainder = 0;
-   if (graph_.size() > threshold) { 
-       limit = threshold; 
-       remainder = graph_.size() - threshold;
-   }
-   else { limit = graph_.size(); }
-   // header
-   std::cout << "      ";
-   for (size_t i = 0; i < limit; i++) {
-       std::cout << noteTable_[i] << " ";
-       if (!noteTable_[i].key.isSharp()) {
-         std::cout << " ";
-       }
-       if (noteTable_[i].octave+1 < 10) {
-         std::cout << " ";
-       }
-   }
-   std::cout << "\n";
-   // row by row
-   for (size_t i = 0; i < limit; i++) {
-      std::cout << noteTable_[i] << "  ";
-      // extra spacing depending on the Note
-      if (!noteTable_[i].key.isSharp()) {
-         std::cout << " ";
+         /* PRINT RIGHT EDGES */
+         std::list<NoteNode::edge> copy = graph_[i][j].edges;
+         // no edges
+         if (copy.empty()) {
+            std::cout << '\t';
+         }
+         // edges exist but node is on the x boundary (aka no right edge)
+         else if (j == graph_[i].size()-1) {
+            // special case: last node (on both boundaries), no right or down edges
+            if (i != graph_.size()-1) {
+               // save the down edge if it exists
+               NoteNode::edge down = copy.front();
+               if (down.first != -1) {
+                  downs.push_back(down.first);
+               }
+            }
+         }
+         // edges exist (only want first TWO listed edges, right & down)
+         else {
+            // print the right edge
+            NoteNode::edge right = copy.front();
+            copy.pop_front();
+            if (right.first != -1) {
+               if (right.first < 10) {
+                  std::cout << "---";
+               } else if (right.first > 99) {
+                  std::cout << "-";
+               } else {
+                  std::cout << "--";
+               }
+               std::cout << right.first << "--";
+            }
+            else {
+               std::cout << "\t";
+            }
+            // save down edge if exists or NOT on y boundary (aka no down edge)
+            if (!copy.empty() && i != graph_.size()-1) {
+               NoteNode::edge down = copy.front();
+               if (down.first != -1) {
+                  downs.push_back(down.first);
+               }
+            }
+         }
       }
-      if (noteTable_[i].octave+1 < 10) {
-         std::cout << " ";
+
+      /* PRINT DOWN EDGES */
+      if (downs.empty()) {
+         std::cout << "\n\n\n\n";
       }
-      for (size_t j = 0; j < limit; j++) {
-          if (graph_[i][j] == -1) {
-            std::cout << "-    ";
-          } else {
-              // extra spacing depending on the value
-              std::cout << graph_[i][j];
-              int n = graph_[i][j] / 10;
-              if (n < 1) { std::cout << "    "; }
-              else if (n < 10) { std::cout << "   "; }
-              else { std::cout << "  "; }
-          }
+      else {
+         std::cout << '\n';
+         for (unsigned i = 0; i < downs.size(); i++) {
+            if (i==0) { std::cout << "   |        "; }
+            else { std::cout << "     |        "; }
+         }
+         std::cout << '\n';
+         for (unsigned i = 0; i < downs.size(); i++) {
+            if (i==0) { std::cout << "   " << downs[i] << "         "; }
+            else { std::cout << "   " << downs[i] << "         "; }
+         }
+         std::cout << '\n';
+         for (unsigned i = 0; i < downs.size(); i++) {
+            if (i==0) { std::cout << "   |        "; }
+            else { std::cout << "     |        "; }
+         }
+         std::cout << '\n';
       }
-      std::cout << "\n";
+      downs.clear();
    }
-   // if graph is too large, detail remainding rows
-   if (remainder != 0) {
-       std::cout << "<and " << remainder << " more rows>\n";
-   }
+   std::cout << '\n';
 }
 
 bool NoteGraph::operator==(const NoteGraph &rhs) const {
-   return (graph_ == rhs.graph_ && noteTable_ == rhs.noteTable_);
+   return (graph_ == rhs.graph_);
 }
