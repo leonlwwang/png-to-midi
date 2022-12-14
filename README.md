@@ -6,7 +6,7 @@ This is a project exploring the design of algorithms to use on musical notation.
 
 > **Given any .png image file, is it possible to produce a melodic sequence of notes out of the image data?**
 
-I want to thank my teammates and good friends **Johnson Chiang** and **Patrick Han** for helping me out with writing a bulk of the test cases in the old project, which really helped me patch a lot of holes in the implementation!
+I want to thank my teammates and good friends **Johnson Chiang** and **Patrick Han** for helping me out with writing a bulk of the test cases in the old project, which enabled me to patch a lot of holes in the implementation!
 
 ## Codebase
 
