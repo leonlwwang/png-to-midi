@@ -4,11 +4,11 @@
 
 This report will visually demonstrate how the `Prim` and `AStar` files in this project are executed upon a `NoteGraph` object (which, at its core, is just a weighted graph) and then briefly discuss the findings of the project. For this demo, the `3x3.png` image will be used to load the NoteGraph. You can find this image in `images/basic` and it looks like this:
 
-![3x3](./images/markdown/3x3big.png)
+![3x3](../images/markdown/3x3big.png)
 
 This is what the weighted graph would look like visually if you load this image into a NoteGraph object.
 
-![3x3](./images/markdown/3x3graph.jpg)
+![3x3](../images/markdown/3x3graph.jpg)
 
 The nodes are `Note` objects and the edge weights are the interval distances between two Notes. More information can be found in `team_proposal.md` and in header file documentation.
 
@@ -20,15 +20,15 @@ Generally speaking, you can pick any random node to start Prim's on, but our ver
 
 First, we mark the node as visited. Next, check the all edges of the current node AND any nodes that have been visited (which currently is just **4G**) that point to an unvisited node. Pick the edge that has the lowest weight. Right now, that would be **15**, the edge from **4G** to **5B**. Add the edge and new node, **5B**, to the minimum spanning tree (which is represented as a NoteGraph in our case) and step into the new node.
 
-![3x3](./images/markdown/3x3graph-prim-step1.jpg)
+![3x3](../images/markdown/3x3graph-prim-step1.jpg)
 
 We repeat this process again. Mark **5B** as visited. Check all edges of the current node and any visited nodes that point to an unvisited node. We check all edges of **4G** and **5B**. Pick the lowest weight, **22**, and add the edge and new node, **6F#**, to the MST.
 
-![3x3](./images/markdown/3x3graph-prim-step2.jpg)
+![3x3](../images/markdown/3x3graph-prim-step2.jpg)
 
 Do this process until all nodes are in the MST. Below is the completed MST.
 
-![3x3](./images/markdown/3x3graph-prim-MST.jpg)
+![3x3](../images/markdown/3x3graph-prim-MST.jpg)
 
 To ensure that Prim's works on our NoteGraphs, we compared if the MST produced by our `prim` function matched the expected MST for a variety of NoteGraphs.
 
@@ -48,27 +48,27 @@ Begin at **4G**, mark it as visited, and calculate our heuristic on adjacent nod
 
 For **5B**, add the edge **15** and the Manhattan distance from **5B** to **7F#**, which is **152**.
 
-![3x3](./images/markdown/3x3graph-astar-step1.jpg)
+![3x3](../images/markdown/3x3graph-astar-step1.jpg)
 
 For **6F#**, add the edge **22** and the Manhattan distance from **6F#** to **7F#**, which is **31**.
 
-![3x3](./images/markdown/3x3graph-astar-step2.jpg)
+![3x3](../images/markdown/3x3graph-astar-step2.jpg)
 
 Now, we have our calculated heuristic cost for stepping into each adjacent node.
 
-![3x3](./images/markdown/3x3graph-astar-step3.jpg)
+![3x3](../images/markdown/3x3graph-astar-step3.jpg)
 
 We step into **6F#** because 167 > 53, and repeat the steps above on that node.
 
-![3x3](./images/markdown/3x3graph-astar-step4.jpg)
+![3x3](../images/markdown/3x3graph-astar-step4.jpg)
 
 We won't visualize the entirety of the next step on **6F#**, but calculated right it should look like this.
 
-![3x3](./images/markdown/3x3graph-astar-step5.jpg)
+![3x3](../images/markdown/3x3graph-astar-step5.jpg)
 
 Finally, this is the MST produced after the algorithm completes.
 
-![3x3](./images/markdown/3x3graph-astar-MST.jpg)
+![3x3](../images/markdown/3x3graph-astar-MST.jpg)
 
 To ensure that A* works on our NoteGraphs, we compared if the MST produced by our `aStar` function matched the expected MST for a variety of NoteGraphs, and because `aStar` internally calls `manh`, our Manhattan distance function, also tested whether that function worked.
 
