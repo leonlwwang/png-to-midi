@@ -2,11 +2,11 @@
 
 # About
 
-This is a project exploring the design of algorithms to use on musical notation. It is an extension of my old CS 225 project which is now a private, archived codebase. I plan to address a multitude of shortcomings in the old project and provide more insight into the original leading question: 
+This is a project exploring algorithm design for music composition purposes. It's an extension of my old CS 225 project, and with it, I plan to address a multitude of shortcomings in the old project (including actually finishing it) and provide more insight into the original leading question: 
 
-> **Given any .png image file, is it possible to produce a melodic sequence of notes out of the image data?**
+**Given any .png image file, is it possible to produce a melodic sequence of notes out of the image data?**
 
-I want to thank my teammates and good friends **Johnson Chiang** and **Patrick Han** for helping me out with writing a bulk of the test cases in the old project, which enabled me to patch a lot of holes in the implementation!
+Thank you to Johnson Chiang and Patrick Han for helping me out with writing the majority of the test cases in the old project, which let me patch a lot of holes in it.
 
 ## Codebase
 
