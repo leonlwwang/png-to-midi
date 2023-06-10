@@ -12,8 +12,4 @@ Thank you to Johnson Chiang and Patrick Han for helping me out with writing the 
 
 I used [midifile](https://github.com/craigsapp/midifile), [lodepng](https://github.com/lvandeve/lodepng), and the [CS225 PNG/HSLAPixel libraries](https://github.com/cs225-illinois/release-f22/tree/main/mp_stickers/lib) to provide infrastructure for the codebase. These libraries can be accessed in `./lib`.
 
-All major files in the codebase are located in `./src`. The algorithms and traversals are located in `./src/algorithms/`. 
-
-## Tests
-
-The test suite is located in `./tests`.
+All major files in the codebase are located in `./src`. The algorithms and traversals are located in `./src/algorithms/`.
